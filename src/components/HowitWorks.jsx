@@ -40,7 +40,7 @@ const HowitWorks = () => {
             <div key={index} className='flex items-start gap-5'> 
                 <div className='text-3xl font-bold text-green-600 '>{step.number}</div>
                 <div>
-                <div className='text-xl font-semibold text-gray-700'>{step.title}</div>
+                <div className='text-2xl font-semibold text-gray-700'>{step.title}</div>
                 <div className='text-gray-600 text-sm'>{step.desc}</div>
                 </div>
 

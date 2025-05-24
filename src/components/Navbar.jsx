@@ -1,36 +1,64 @@
-import React from 'react'
-import { FaShoppingBag, FaShoppingCart } from 'react-icons/fa';
-import { FiSearch } from 'react-icons/fi';
-import { IoIosContact } from 'react-icons/io';
+import React, { useState } from "react";
+import { FiSearch } from "react-icons/fi";
+import { IoIosContact } from "react-icons/io";
+import { FaShoppingCart } from "react-icons/fa";
+import { GiHamburgerMenu } from "react-icons/gi"; // Icon for toggle button
 
-const Navbar = () => {
+function Header() {
+  const [show, setShow] = useState(false);
+
+  const toggle = () => {
+    setShow((prev) => !prev);
+  };
+
   return (
-    <header  className='flex  flex-row justify-between items-center px-5 py-5 lg:px-14 md:px-10  bg-teal-300'>
-    <div style={{width:'200px'}}>
-      <span className=' text-xl gap-15 p-5 '> Farm_Root</span>
-    </div>
-    <nav className='hidden md:flex  gap-6 '>
-        <a href="" className='navHover'>Home </a>
-        <a href="" className='navHover'>Menu </a>
-        <a  className='navHover' href="">About-us </a>
-        <a  className='navHover'href="">subscription </a>
-        <a className='navHover'href="">Recipes </a>
-        <a className='navHover'href="">contact </a>
+    <header className="flex flex-col md:flex-row justify-between items-start md:items-center px-5 py-5 lg:px-14 md:px-10 bg-teal-300 relative">
+      {/* Logo */}
+      <div className="w-52">
+        <span className="text-xl font-bold">Farm_Root</span>
+      </div>
 
-        {/* icons */}
+      {/* Desktop Nav */}
+      <nav className="hidden md:flex gap-6 items-center">
+        <a className="navHover" href="/">Home</a>
+        <a className="navHover" href="products">products</a>
+        <a className="navHover" href="about">About-us</a>
+        <a className="navHover" href="testimonials">testimonials</a>
+        <a className="navHover" href="#">Recipes</a>
+        <a className="navHover" href="#">Contact</a>
 
-           <div className="flex justify-center gap-3 ml-8 items-center">
-               <span className='icons hover:bg-green-700'><FiSearch  /></span>
-                <span className='icons hover:bg-green-700'><IoIosContact   /></span>
-               <span className='icons hover:bg-green-700'><FaShoppingCart  /></span>
-     </div>
+        {/* Icons */}
+        <div className="flex gap-3 ml-8 items-center">
+          <span className="icons hover:bg-green-700"><FiSearch /></span>
+          <span className="icons hover:bg-green-700"><IoIosContact /></span>
+          <span className="icons hover:bg-green-700"><FaShoppingCart /></span>
+        </div>
+      </nav>
 
-    </nav>
+      {/* Toggle Button for Mobile */}
+      <button onClick={toggle} className="md:hidden absolute top-6 right-6 text-2xl">
+        <GiHamburgerMenu />
+      </button>
 
-    <button className=" md:hidden bg-green-500 hover:bg-white text-black py-3 px-6 rounded-full transform duration-700  ">shop now </button>
-  
-</header>
-  )
+      {/* Mobile Nav */}
+      {show && (
+        <nav className=" w-full md:hidden flex-col flex  gap-y-2  divide-emerald-100 transition duration-300 relative divide-y-2 ">
+          <a className="navHover" href="#">Home</a>
+          <a className="navHover" href="#">Menu</a>
+          <a className="navHover" href="#">About-us</a>
+          <a className="navHover" href="#">Subscription</a>
+          <a className="navHover" href="#">Recipes</a>
+          <a className="navHover" href="#">Contact</a>
+
+          <div className="flex gap-3 mt-2 items-center">
+            <span className="icons hover:bg-green-700"><FiSearch /></span>
+            <span className="icons hover:bg-green-700"><IoIosContact /></span>
+            <span className="icons hover:bg-green-700"><FaShoppingCart /></span>
+          </div>
+        </nav>
+      )}
+    </header>
+  );
 }
 
-export default Navbar;
+export default Header;
